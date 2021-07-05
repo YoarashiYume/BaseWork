@@ -1,0 +1,81 @@
+databaseChangeLog:
+  - changeSet:
+      id: 02022021-create-sequense-converter-info
+      author: Alex Sereda
+      changes:
+        - createSequence:
+            sequenceName: converter_info_seq
+            startValue: 1
+
+  - changeSet:
+      id: 02022021-create-table-converter-info
+      author: Alex Sereda
+      changes:
+        - createTable:
+            tableName: converter_info
+            columns:
+              - column: { name: id, type: bigint }
+              - column: { name: unique_id, type: varchar(36) }
+              - column: { name: message, type: text }
+              - column: { name: status, type: varchar(20) }
+        - addDefaultValue:
+            columnName: message
+            tableName: converter_info
+            defaultValue: ''
+
+  - changeSet:
+      id: 02022021-create-converter-info-constraint
+      author: Alex Sereda
+      changes:
+        - addPrimaryKey:
+              tableName: converter_info
+              columnNames: id
+        - addNotNullConstraint:
+            tableName: converter_info
+            columnName: unique_id
+        - addNotNullConstraint:
+            tableName: converter_info
+            columnName: status
+        - addNotNullConstraint:
+            tableName: converter_info
+            columnName: message
+
+  - changeSet:
+      id: 12062021-drop-column
+      author: Alexey Rogozhnikov
+      changes:
+        - dropColumn:
+            columnName: message
+            tableName: converter_info
+
+  - changeSet:
+      id: 12062021-add-column
+      author: Alexey Rogozhnikov
+      changes:
+        - addColumn:
+            tableName: converter_info
+            columns:
+              - column:
+                  name: code
+                  type: varchar(255)
+              - column:
+                  name: description
+                  type: text
+              - column:
+                  name: field
+                  type: varchar(255)
+              - column:
+                  name: field_name
+                  type: varchar(255)
+              - column:
+                  name: field_value
+                  type: varchar(255)
+              - column:
+                  name: type_doc
+                  type: int
+              - column:
+                  name: create_date
+                  type: timestamp with time zone
+              - column:
+                  name: verify_time
+                  type: bigint
