@@ -1,0 +1,231 @@
+databaseChangeLog:
+  - changeSet:
+      id: 05072021-createFood
+      author: AuthorName
+      changes:
+        - createSequence:
+            sequenceName: foodSEQ
+            startValue: 1105879
+        - createTable:
+            tableName: food
+            columns:
+                - column: {name: fdc_id, type: bigint}
+                - column: {name: data_type, type: text}
+                - column: {name: description, type: text}
+                - column: 
+                    name: food_category_id
+                    type: bigint
+                    constraints: 
+                      - nullable: true
+                - column: {name: publication_date, type: date}
+
+  - changeSet:
+      id: 06072021-fillFood
+      author: AuthorName
+      changes:
+        - loadData:    
+            columns: 
+                - column: {name: fdc_id, type: numeric}
+                - column: {name: data_type, type: string}
+                - column: {name: description, type: string}
+                - column: {name: food_category_id, type: numeric}
+                - column: {name: publication_date, type: date}   
+            file:  rawData/food.csv
+            quotchar:  '"'
+            relativeToChangelogFile:  true
+            schemaName:  public
+            separator:  ','
+            tableName:  food
+            usePreparedStatements:  true
+            
+  - changeSet:
+      id: 06072021-createFoodCategory
+      author: AuthorName
+      changes:
+        - createSequence:
+            sequenceName: foodCatSEQ
+            startValue: 29
+        - createTable:
+            tableName: food_category
+            columns:
+                - column: {name: id, type: bigint}
+                - column: {name: code, type: bigint}
+                - column: {name: description, type: text}
+  - changeSet:
+      id: 06072021-fillFoodCategory
+      author: AuthorName
+      changes:
+        - loadData:    
+            columns: 
+                - column: {name: id, type: numeric}
+                - column: {name: code, type: numeric}
+                - column: {name: description, type: string}
+            file:  rawData/food_category.csv
+            quotchar:  '"'
+            relativeToChangelogFile:  true
+            schemaName:  public
+            separator:  ','
+            tableName:  food_category
+            usePreparedStatements:  true
+  - changeSet:  
+      id:  06072021-addForeignKeyToFood
+      author:  AuthorName  
+      changes:
+        - addPrimaryKey:
+            clustered:  true
+            columnNames:  id
+            constraintName:  pk_food_category
+            schemaName:  public
+            tableName:  food_category
+            validate:  true
+        - addPrimaryKey:
+            clustered:  true
+            columnNames:  fdc_id
+            constraintName:  pk_food
+            schemaName:  public
+            tableName:  food
+            validate:  true
+        -  addForeignKeyConstraint:  
+            baseColumnNames:  food_category_id    
+            baseTableName:  food  
+            baseTableSchemaName:  public  
+            constraintName:  fk_category_food  
+            deferrable:  true  
+            initiallyDeferred:  true  
+            onDelete:  CASCADE  
+            onUpdate:  RESTRICT  
+            referencedColumnNames:  id   
+            referencedTableName:  food_category  
+            referencedTableSchemaName:  public  
+            validate:  true
+  - changeSet:
+      id: 06072021-createFoodPortion
+      author: AuthorName
+      changes:
+        - createSequence:
+            sequenceName: foodPortionSEQ
+            startValue: 267795
+        - createTable:
+            tableName: food_portion
+            columns:
+                - column: {name: id, type: bigint}
+                - column: {name: fdc_id, type: bigint}
+                - column: {name: seq_num, type: numeric}
+                - column: {name: amount, type: numeric}
+                - column: {name: measure_unit_id, type: numeric}
+                - column: {name: portion_description, type: text}
+                - column: {name: modifier, type: text}
+                - column: {name: gram_weight, type: numeric}
+                - column: {name: data_points, type: numeric}
+                - column: {name: footnote, type: numeric}
+                - column: {name: min_year_acquired, type: numeric}
+        - addPrimaryKey:
+            clustered:  true
+            columnNames:  id
+            constraintName:  pk_food_portion
+            schemaName:  public
+            tableName:  food_portion
+            validate:  true
+        -  addForeignKeyConstraint:  
+            baseColumnNames:  fdc_id    
+            baseTableName:  food_portion  
+            baseTableSchemaName:  public  
+            constraintName:  fk_portion_food  
+            deferrable:  true  
+            initiallyDeferred:  true  
+            onDelete:  CASCADE  
+            onUpdate:  RESTRICT  
+            referencedColumnNames:  fdc_id   
+            referencedTableName:  food
+            referencedTableSchemaName:  public  
+            validate:  true
+  - changeSet:
+      id: 06072021-fillFoodPortion
+      author: AuthorName
+      changes:
+        - loadData:    
+            columns: 
+                - column: {name: id, type: numeric}
+                - column: {name: fdc_id, type: numeric}
+                - column: {name: seq_num, type: numeric}
+                - column: {name: amount, type: numeric}
+                - column: {name: measure_unit_id, type: numeric}
+                - column: {name: portion_description, type: string}
+                - column: {name: modifier, type: string}
+                - column: {name: gram_weight, type: numeric}
+                - column: {name: data_points, type: numeric}
+                - column: {name: footnote, type: numeric}
+                - column: {name: min_year_acquired, type: numeric}
+            file:  rawData/food_portion.csv
+            quotchar:  '"'
+            relativeToChangelogFile:  true
+            schemaName:  public
+            separator:  ','
+            tableName:  food_portion
+            usePreparedStatements:  true
+            
+  - changeSet:
+      id: 06072021-createFoodNutrient
+      author: AuthorName
+      changes:
+        - createSequence:
+            sequenceName: foodNutrientSEQ
+            startValue: 13338374
+        - createTable:
+            tableName: food_nutrient
+            columns:
+                - column: {name: id, type: bigint}
+                - column: {name: fdc_id, type: bigint}
+                - column: {name: nutrient_id, type: bigint}
+                - column: {name: amount, type: numeric}
+                - column: {name: data_points, type: bigint}
+                - column: {name: derivation_id, type: bigint}
+                - column: {name: min, type: numeric}
+                - column: {name: max, type: numeric}
+                - column: {name: median, type: numeric}
+                - column: {name: footnote, type: text}
+                - column: {name: min_year_acqured, type: INT}
+        - addPrimaryKey:
+            clustered:  true
+            columnNames:  id
+            constraintName:  pk_food_nutrient
+            schemaName:  public
+            tableName:  food_nutrient
+            validate:  true
+        -  addForeignKeyConstraint:  
+            baseColumnNames:  fdc_id    
+            baseTableName:  food_nutrient  
+            baseTableSchemaName:  public  
+            constraintName:  fk_nutrient_food  
+            deferrable:  true  
+            initiallyDeferred:  true  
+            onDelete:  CASCADE  
+            onUpdate:  RESTRICT  
+            referencedColumnNames:  fdc_id   
+            referencedTableName:  food
+            referencedTableSchemaName:  public  
+            validate:  true
+  - changeSet:
+      id: 06072021-fillFoodNutrient
+      author: AuthorName
+      changes:
+        - loadData:    
+            columns: 
+                - column: {name: id, type: numeric}
+                - column: {name: fdc_id, type: numeric}
+                - column: {name: nutrient_id, type: numeric}
+                - column: {name: amount, type: numeric}
+                - column: {name: data_points, type: numeric}
+                - column: {name: derivation_id, type: numeric}
+                - column: {name: min, type: numeric}
+                - column: {name: max, type: numeric}
+                - column: {name: median, type: numeric}
+                - column: {name: footnote, type: string}
+                - column: {name: min_year_acqured, type: numeric}
+            file:  rawData/food_nutrient.csv
+            quotchar:  '"'
+            relativeToChangelogFile:  true
+            schemaName:  public
+            separator:  ','
+            tableName:  food_nutrient
+            usePreparedStatements:  true
