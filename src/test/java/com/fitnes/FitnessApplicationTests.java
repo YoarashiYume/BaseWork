@@ -1,10 +1,10 @@
-package com.Fitnes;
+package com.fitnes;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class FitnesApplicationTests {
+class FitnessApplicationTests {
 
 	@Test
 	void contextLoads() {
