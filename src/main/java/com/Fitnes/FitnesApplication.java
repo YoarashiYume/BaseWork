@@ -1,13 +1,13 @@
-package com.fitnes;
+package com.Fitnes;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class FitnessApplication {
+public class FitnesApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(FitnessApplication.class, args);
+		SpringApplication.run(FitnesApplication.class, args);
 	}
 
 }
