@@ -1,5 +1,7 @@
 package com.fitness.model;
 
+import lombok.NoArgsConstructor;
+
 import javax.persistence.Entity;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
@@ -11,10 +13,8 @@ import java.util.Date;
 
 @Entity
 @Table(name = "food")
+@NoArgsConstructor
 public class Food implements Serializable {
-
-    public Food() {
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

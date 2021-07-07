@@ -1,5 +1,7 @@
 package com.fitness.model;
 
+import lombok.NoArgsConstructor;
+
 import javax.persistence.Entity;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
@@ -10,6 +12,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "food_portion")
+@NoArgsConstructor
 public class FoodPortion implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,9 +39,6 @@ public class FoodPortion implements Serializable {
     private Long footnote;
     @Column(name = "min_year_acquired")
     private Long min_year_acquired;
-
-    public FoodPortion() {
-    }
 
     public Long getId() {
         return id;

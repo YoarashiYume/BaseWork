@@ -1,5 +1,7 @@
 package com.fitness.model;
 
+import lombok.NoArgsConstructor;
+
 import javax.persistence.Entity;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
@@ -10,6 +12,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "food_nutrient")
+@NoArgsConstructor
 public class FoodNutrient implements Serializable {
 
     @Id
@@ -37,9 +40,6 @@ public class FoodNutrient implements Serializable {
     private String footnote;
     @Column(name = "min_year_acqured")
     private Integer min_year_acqured;
-
-    public FoodNutrient() {
-    }
 
     public Long getId() {
         return id;
