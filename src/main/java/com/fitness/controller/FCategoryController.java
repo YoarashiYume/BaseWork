@@ -1,33 +1,35 @@
 package com.fitness.controller;
 import com.fitness.model.FoodCategory;
 import com.fitness.repository.FCategoryRepository;
+
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
 import org.apache.commons.lang3.StringUtils;
-
-
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
+import static com.fitness.controller.supportfunc.SupportClass.*;
+
 @FieldDefaults(level = AccessLevel.PUBLIC)
 @RestController
 @RequestMapping("foodCategory")
 @AllArgsConstructor
 public class FCategoryController {
-    private FCategoryRepository fcr;
+    private FCategoryRepository foodCategoryRepository;
 
     @GetMapping
     List<FoodCategory> allFoodCategory() {
-        return fcr.findAll();
+        return foodCategoryRepository.findAll();
     }
-    @GetMapping("{id:[\\d]*}")
+
+    @GetMapping("{id:[\\d]+}")
     FoodCategory foodCategoryOnId(@PathVariable Long id) {
-        Optional<FoodCategory> result = fcr.findAll().stream().filter(el -> el.getId().equals(id)).findFirst();
+        Optional<FoodCategory> result = foodCategoryRepository.findAll().stream().filter(el -> id.equals(el.getId())).findFirst();
         return result.orElse(null);
     }
 
@@ -37,40 +39,42 @@ public class FCategoryController {
                                          @RequestParam("code") String code,
                                          @RequestParam("desc") String desc)
     {
-        return fcr.findAll().stream().filter(el -> el.getId().equals(!StringUtils.isNumeric(id)? el.getId() : Long.parseLong(id,10)))
-                .filter(el -> el.getCode().equals(!StringUtils.isNumeric(code)? el.getCode() : Long.parseLong(code,10)))
-                .filter(el -> el.getDescription().equals(desc.isEmpty() ? el.getDescription() : desc))
+        if (isSomeAlpha(id))
+            return null;
+        return foodCategoryRepository.findAll().stream()
+                .filter(el -> eqWnullEx(el.getId(),id))
+                .filter(el -> eqWnullEx(el.getCode(),code))
+                .filter(el -> eqWnullEx(el.getDescription(), desc))
                 .collect(Collectors.toList());
     }
+
     @PostMapping
     void addCategory(@RequestBody Map<String,String> body)
     {
-        if (body.size()!=2 || !body.containsKey("code")
-                || !body.containsKey("desc") || !StringUtils.isNumeric(body.get("code"))) return;
-        FoodCategory fc = new FoodCategory();
-        fc.setCode(Long.parseLong(body.get("code"),10));
-        fc.setDescription(body.get("desc"));
-        fcr.save(fc);
+        if (body.containsKey("code") && !StringUtils.isNumeric(body.get("code"))) return;
+        FoodCategory foodCategory = new FoodCategory();
+        body.computeIfPresent("foodId",(k,v)->{foodCategory.setCode(pOnL(v)); return v;});
+        body.computeIfPresent("seqNum",(k,v)->{foodCategory.setDescription(v); return v;});
+        foodCategoryRepository.save(foodCategory);
     }
-    @DeleteMapping("{id:[\\d]*}")
+
+    @DeleteMapping("{id:[\\d]+}")
     void removeCategory(@PathVariable Long id)
     {
-        Optional<FoodCategory> result = fcr.findAll().stream().filter(el -> el.getId().equals(id)).findFirst();
-        result.ifPresent(foodCategory -> fcr.delete(foodCategory));
+        Optional<FoodCategory> result = foodCategoryRepository.findAll().stream().filter(el -> id.equals(el.getId())).findFirst();
+        result.ifPresent(foodCategory -> foodCategoryRepository.delete(foodCategory));
     }
-    @PutMapping("{id:[\\d]*}")
+
+    @PutMapping("{id:[\\d]+}")
     void updateCategory(@PathVariable Long id,@RequestBody Map<String,String> body)
     {
-        if (body.size()<1 )
+        if (body.containsKey("code") && !StringUtils.isNumeric(body.get("code")))
             return;
-        Optional<FoodCategory> oldVersion = fcr.findAll().stream().filter(el -> el.getId().equals(id)).findFirst();
-        if (fcr.findAll().size()<=id || oldVersion.isEmpty())
+        FoodCategory newVersion = foodCategoryRepository.findAll().stream().filter(el -> id.equals(el.getId())).findFirst().orElse(null);
+        if (newVersion == null)
             return;
-        FoodCategory newVersion = oldVersion.get();
-        if (body.containsKey("code") && StringUtils.isNumeric(body.get("code")))
-            newVersion.setCode(Long.parseLong(body.get("code"),10));
-        if (body.containsKey("desc"))
-            newVersion.setDescription(body.get("desc"));
-        fcr.save(newVersion);
+        body.computeIfPresent("foodId",(k,v)->{newVersion.setCode(pOnL(v)); return v;});
+        body.computeIfPresent("seqNum",(k,v)->{newVersion.setDescription(v); return v;});
+        foodCategoryRepository.save(newVersion);
     }
 }

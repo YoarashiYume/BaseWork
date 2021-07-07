@@ -83,3 +83,19 @@ databaseChangeLog:
             separator:  ','
             tableName:  food_nutrient
             usePreparedStatements:  true
+  - changeSet:
+      id:  06072021-changeFoodSeq
+      author:  AuthorName
+      changes:
+        - alterSequence:
+            sequenceName:  foodSEQ
+            startValue: 1105897
+            minValue: 1
+  - changeSet:
+      id:  07072021-changeFoodNutrientSeq
+      author:  AuthorName
+      changes:
+        - alterSequence:
+            sequenceName:  foodSEQ
+            startValue: 13338388
+            minValue: 1

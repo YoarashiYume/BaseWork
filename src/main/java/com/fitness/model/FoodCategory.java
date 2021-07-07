@@ -14,7 +14,7 @@ import javax.persistence.*;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class FoodCategory {
     @Id
-    @SequenceGenerator(name = "foodCatSEQ",sequenceName = "foodCatSEQ", allocationSize = 1)
+    @SequenceGenerator(name = "foodCatSEQ",sequenceName = "\"foodCatSEQ\"", allocationSize = 1)
     @GeneratedValue(generator ="foodCatSEQ", strategy = GenerationType.SEQUENCE)
 
     @Column(name = "id")

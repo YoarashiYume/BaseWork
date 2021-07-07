@@ -13,7 +13,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class FoodPortion  {
     @Id
-    @SequenceGenerator(name = "foodPortionSEQ", sequenceName = "foodPortionSEQ", allocationSize = 1)
+    @SequenceGenerator(name = "foodPortionSEQ", sequenceName = "\"foodPortionSEQ\"", allocationSize = 1)
     @GeneratedValue(generator = "foodPortionSEQ", strategy = GenerationType.SEQUENCE)
 
     @Column(name = "id")
