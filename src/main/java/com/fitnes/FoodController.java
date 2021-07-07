@@ -1,21 +1,19 @@
-package com.Fitnes.Controller;
+package com.Fitnes;
 
 
-import com.Fitnes.model.FoodCategory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.Fitnes.model.Food;
-
+import com.Fitnes.repo.FoodRepository;
 
 import java.util.List;
 @RestController
 public class FoodController {
-    private JpaRepository<Food, Long> fr;
+    private FoodRepository fr;
 
     @Autowired
-    public FoodController(JpaRepository<Food, Long> fr) {
+    public FoodController(FoodRepository fr) {
         this.fr = fr;
     }
 

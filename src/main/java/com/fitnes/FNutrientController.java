@@ -1,22 +1,23 @@
-package com.Fitnes.Controller;
-
+package com.Fitnes;
 import com.Fitnes.model.FoodCategory;
+import com.Fitnes.model.FoodNutrient;
+import com.Fitnes.repo.FNutrientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import java.util.List;
 
 @RestController
-public class FCategoryController {
-    private JpaRepository<FoodCategory, Long> fcr;
+public class FNutrientController {
+    private FNutrientRepository fcr;
     @Autowired
-    public FCategoryController(JpaRepository<FoodCategory, Long> fcr) {
+    public FNutrientController(FNutrientRepository fcr) {
         this.fcr = fcr;
     }
 
-    @GetMapping("/foodCategory/all")
-    public List<FoodCategory> allFood() {
+    @GetMapping("/foodNutrient/all")
+    public List<FoodNutrient> allFood() {
         return fcr.findAll();
     }
 }
