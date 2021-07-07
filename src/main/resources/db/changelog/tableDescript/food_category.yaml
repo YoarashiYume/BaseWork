@@ -1,0 +1,38 @@
+databaseChangeLog:
+  - changeSet:
+      id: 06072021-createFoodCategory
+      author: AuthorName
+      changes:
+        - createSequence:
+            sequenceName: foodCatSEQ
+            startValue: 29
+        - createTable:
+            tableName: food_category
+            columns:
+                - column: {name: id, type: bigint}
+                - column: {name: code, type: bigint}
+                - column: {name: description, type: text}
+  - changeSet:  
+      id:  06072021-addForeignKeyToFood
+      author:  AuthorName  
+      changes:
+        - addPrimaryKey:
+            clustered:  true
+            columnNames:  id
+            constraintName:  pk_food_category
+            schemaName:  public
+            tableName:  food_category
+            validate:  true
+        -  addForeignKeyConstraint:  
+            baseColumnNames:  food_category_id    
+            baseTableName:  food  
+            baseTableSchemaName:  public  
+            constraintName:  fk_category_food  
+            deferrable:  true  
+            initiallyDeferred:  true  
+            onDelete:  CASCADE  
+            onUpdate:  RESTRICT  
+            referencedColumnNames:  id   
+            referencedTableName:  food_category  
+            referencedTableSchemaName:  public  
+            validate:  true

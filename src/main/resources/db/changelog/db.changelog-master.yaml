@@ -1,2 +1,6 @@
 databaseChangeLog:
+  - include: { relativeToChangelogFile: true, file: tableDescript/food.yaml }
+  - include: { relativeToChangelogFile: true, file: tableDescript/food_category.yaml }
+  - include: { relativeToChangelogFile: true, file: tableDescript/food_nutrient.yaml }
+  - include: { relativeToChangelogFile: true, file: tableDescript/food_portion.yaml }
   - include: { relativeToChangelogFile: true, file: converter_info.yaml }

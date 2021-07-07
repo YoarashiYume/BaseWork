@@ -1,0 +1,42 @@
+ databaseChangeLog:
+  - changeSet:
+      id: 06072021-createFoodNutrient
+      author: AuthorName
+      changes:
+        - createSequence:
+            sequenceName: foodNutrientSEQ
+            startValue: 13338374
+        - createTable:
+            tableName: food_nutrient
+            columns:
+                - column: {name: id, type: bigint}
+                - column: {name: fdc_id, type: bigint}
+                - column: {name: nutrient_id, type: bigint}
+                - column: {name: amount, type: numeric}
+                - column: {name: data_points, type: bigint}
+                - column: {name: derivation_id, type: bigint}
+                - column: {name: min, type: numeric}
+                - column: {name: max, type: numeric}
+                - column: {name: median, type: numeric}
+                - column: {name: footnote, type: text}
+                - column: {name: min_year_acqured, type: INT}
+        - addPrimaryKey:
+            clustered:  true
+            columnNames:  id
+            constraintName:  pk_food_nutrient
+            schemaName:  public
+            tableName:  food_nutrient
+            validate:  true
+        -  addForeignKeyConstraint:  
+            baseColumnNames:  fdc_id    
+            baseTableName:  food_nutrient  
+            baseTableSchemaName:  public  
+            constraintName:  fk_nutrient_food  
+            deferrable:  true  
+            initiallyDeferred:  true  
+            onDelete:  CASCADE  
+            onUpdate:  RESTRICT  
+            referencedColumnNames:  fdc_id   
+            referencedTableName:  food
+            referencedTableSchemaName:  public  
+            validate:  true

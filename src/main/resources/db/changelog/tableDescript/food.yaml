@@ -1,0 +1,27 @@
+databaseChangeLog:
+  - changeSet:
+      id: 05072021-createFood
+      author: AuthorName
+      changes:
+        - createSequence:
+            sequenceName: foodSEQ
+            startValue: 1105879
+        - createTable:
+            tableName: food
+            columns:
+                - column: {name: fdc_id, type: bigint}
+                - column: {name: data_type, type: text}
+                - column: {name: description, type: text}
+                - column: 
+                    name: food_category_id
+                    type: bigint
+                    constraints: 
+                      - nullable: true
+                - column: {name: publication_date, type: date}
+        - addPrimaryKey:
+            clustered:  true
+            columnNames:  fdc_id
+            constraintName:  pk_food
+            schemaName:  public
+            tableName:  food
+            validate:  true

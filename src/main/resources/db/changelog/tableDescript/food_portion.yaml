@@ -1,0 +1,42 @@
+databaseChangeLog:
+  - changeSet:
+      id: 06072021-createFoodPortion
+      author: AuthorName
+      changes:
+        - createSequence:
+            sequenceName: foodPortionSEQ
+            startValue: 267795
+        - createTable:
+            tableName: food_portion
+            columns:
+                - column: {name: id, type: bigint}
+                - column: {name: fdc_id, type: bigint}
+                - column: {name: seq_num, type: numeric}
+                - column: {name: amount, type: numeric}
+                - column: {name: measure_unit_id, type: numeric}
+                - column: {name: portion_description, type: text}
+                - column: {name: modifier, type: text}
+                - column: {name: gram_weight, type: numeric}
+                - column: {name: data_points, type: numeric}
+                - column: {name: footnote, type: numeric}
+                - column: {name: min_year_acquired, type: numeric}
+        - addPrimaryKey:
+            clustered:  true
+            columnNames:  id
+            constraintName:  pk_food_portion
+            schemaName:  public
+            tableName:  food_portion
+            validate:  true
+        -  addForeignKeyConstraint:  
+            baseColumnNames:  fdc_id    
+            baseTableName:  food_portion  
+            baseTableSchemaName:  public  
+            constraintName:  fk_portion_food  
+            deferrable:  true  
+            initiallyDeferred:  true  
+            onDelete:  CASCADE  
+            onUpdate:  RESTRICT  
+            referencedColumnNames:  fdc_id   
+            referencedTableName:  food
+            referencedTableSchemaName:  public  
+            validate:  true
