@@ -1,5 +1,4 @@
-package com.Fitnes.model;
-
+package com.fitness.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Column;
@@ -12,7 +11,8 @@ import java.util.Date;
 
 @Entity
 @Table(name = "food")
-public class Food implements Serializable{
+public class Food implements Serializable {
+
     public Food() {
     }
 
@@ -22,11 +22,11 @@ public class Food implements Serializable{
     @Column(name = "fdc_id")
     private Long fdc_id;
     @Column(name = "data_type")
-    private String  data_type = "";
+    private String data_type = "";
 
 
     @Column(name = "description")
-    private String  description;
+    private String description;
     @Column(name = "food_category_id")
     private Long food_category_id;
     @Column(name = "publication_date")
@@ -46,7 +46,7 @@ public class Food implements Serializable{
     }
 
     public void setData_type(String data_type) {
-        if (data_type!=null)this.data_type = data_type;
+        if (data_type != null) this.data_type = data_type;
     }
 
     public String getDescription() {
@@ -54,7 +54,7 @@ public class Food implements Serializable{
     }
 
     public void setDescription(String description) {
-        if (description!=null)this.description = description;
+        if (description != null) this.description = description;
     }
 
     public Long getFood_category_id() {
@@ -62,7 +62,7 @@ public class Food implements Serializable{
     }
 
     public void setFood_category_id(Long food_category_id) {
-        if (food_category_id !=null)
+        if (food_category_id != null)
             this.food_category_id = food_category_id;
     }
 
@@ -71,7 +71,7 @@ public class Food implements Serializable{
     }
 
     public void setPublication_date(Date publication_date) {
-        if (publication_date!=null)
-        this.publication_date = publication_date;
+        if (publication_date != null)
+            this.publication_date = publication_date;
     }
 }

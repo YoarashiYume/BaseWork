@@ -1,4 +1,4 @@
-package com.Fitnes.model;
+package com.fitness.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Column;
@@ -10,16 +10,17 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "food_nutrient")
-public class FoodNutrient implements Serializable{
+public class FoodNutrient implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     @Column(name = "id")
     private Long id;
     @Column(name = "fdc_id")
-    private Long  fdc_id;
+    private Long fdc_id;
     @Column(name = "nutrient_id")
-    private Long  nutrient_id;
+    private Long nutrient_id;
     @Column(name = "amount")
     private Long amount;
     @Column(name = "data_points")
@@ -27,9 +28,9 @@ public class FoodNutrient implements Serializable{
     @Column(name = "derivation_id")
     private Long derivation_id;
     @Column(name = "min")
-    private Double  min;
+    private Double min;
     @Column(name = "max")
-    private Double  max;
+    private Double max;
     @Column(name = "median")
     private Double median;
     @Column(name = "footnote")
@@ -61,8 +62,8 @@ public class FoodNutrient implements Serializable{
     }
 
     public void setNutrient_id(Long nutrient_id) {
-        if (nutrient_id!=null)
-        this.nutrient_id = nutrient_id;
+        if (nutrient_id != null)
+            this.nutrient_id = nutrient_id;
     }
 
     public Long getAmount() {
@@ -70,8 +71,8 @@ public class FoodNutrient implements Serializable{
     }
 
     public void setAmount(Long amount) {
-        if (amount!=null)
-        this.amount = amount;
+        if (amount != null)
+            this.amount = amount;
     }
 
     public Long getData_points() {
@@ -79,8 +80,8 @@ public class FoodNutrient implements Serializable{
     }
 
     public void setData_points(Long data_points) {
-        if (data_points!=null)
-        this.data_points = data_points;
+        if (data_points != null)
+            this.data_points = data_points;
     }
 
     public Long getDerivation_id() {
@@ -88,8 +89,8 @@ public class FoodNutrient implements Serializable{
     }
 
     public void setDerivation_id(Long derivation_id) {
-        if (derivation_id!=null)
-        this.derivation_id = derivation_id;
+        if (derivation_id != null)
+            this.derivation_id = derivation_id;
     }
 
     public Double getMin() {
@@ -97,8 +98,8 @@ public class FoodNutrient implements Serializable{
     }
 
     public void setMin(Double min) {
-        if (min!=null)
-        this.min = min;
+        if (min != null)
+            this.min = min;
     }
 
     public Double getMax() {
@@ -106,8 +107,8 @@ public class FoodNutrient implements Serializable{
     }
 
     public void setMax(Double max) {
-        if (max!=null)
-        this.max = max;
+        if (max != null)
+            this.max = max;
     }
 
     public Double getMedian() {
@@ -115,8 +116,8 @@ public class FoodNutrient implements Serializable{
     }
 
     public void setMedian(Double median) {
-        if (median!=null)
-        this.median = median;
+        if (median != null)
+            this.median = median;
     }
 
     public String getFootnote() {
@@ -124,8 +125,8 @@ public class FoodNutrient implements Serializable{
     }
 
     public void setFootnote(String footnote) {
-        if (footnote!=null)
-        this.footnote = footnote;
+        if (footnote != null)
+            this.footnote = footnote;
     }
 
     public Integer getMin_year_acqured() {
@@ -134,6 +135,6 @@ public class FoodNutrient implements Serializable{
 
     public void setMin_year_acqured(Integer min_year_acqured) {
         if (min_year_acqured != null)
-        this.min_year_acqured = min_year_acqured;
+            this.min_year_acqured = min_year_acqured;
     }
 }

@@ -1,4 +1,5 @@
-package com.Fitnes.model;
+package com.fitness.model;
+
 import javax.persistence.Entity;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
@@ -6,7 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
-
 
 @Entity
 @Table(name = "food_portion")
@@ -17,9 +17,9 @@ public class FoodPortion implements Serializable {
     @Column(name = "id")
     private Long id;
     @Column(name = "fdc_id")
-    private Long  fdc_id;
+    private Long fdc_id;
     @Column(name = "seq_num")
-    private Long  seq_num;
+    private Long seq_num;
     @Column(name = "amount")
     private Long amount;
     @Column(name = "measure_unit_id")
@@ -27,9 +27,9 @@ public class FoodPortion implements Serializable {
     @Column(name = "portion_description")
     private String portion_description;
     @Column(name = "modifier")
-    private String  modifier;
+    private String modifier;
     @Column(name = "gram_weight")
-    private Double  gram_weight;
+    private Double gram_weight;
     @Column(name = "data_points")
     private Long data_points;
     @Column(name = "footnote")
@@ -62,7 +62,7 @@ public class FoodPortion implements Serializable {
 
     public void setSeq_num(Long seq_num) {
         if (seq_num != null)
-        this.seq_num = seq_num;
+            this.seq_num = seq_num;
     }
 
     public Long getAmount() {
@@ -86,8 +86,8 @@ public class FoodPortion implements Serializable {
     }
 
     public void setPortion_description(String portion_description) {
-        if (portion_description!=null)
-        this.portion_description = portion_description;
+        if (portion_description != null)
+            this.portion_description = portion_description;
     }
 
     public String getModifier() {
@@ -95,8 +95,8 @@ public class FoodPortion implements Serializable {
     }
 
     public void setModifier(String modifier) {
-        if (modifier!=null)
-        this.modifier = modifier;
+        if (modifier != null)
+            this.modifier = modifier;
     }
 
     public Double getGram_weight() {
@@ -120,8 +120,8 @@ public class FoodPortion implements Serializable {
     }
 
     public void setFootnote(Long footnote) {
-        if (footnote!=null)
-        this.footnote = footnote;
+        if (footnote != null)
+            this.footnote = footnote;
     }
 
     public Long getMin_year_acquired() {
@@ -129,7 +129,7 @@ public class FoodPortion implements Serializable {
     }
 
     public void setMin_year_acquired(Long min_year_acquired) {
-        if (min_year_acquired!=null)
-        this.min_year_acquired = min_year_acquired;
+        if (min_year_acquired != null)
+            this.min_year_acquired = min_year_acquired;
     }
 }

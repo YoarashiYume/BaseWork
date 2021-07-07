@@ -1,4 +1,5 @@
-package com.Fitnes.model;
+package com.fitness.model;
+
 import javax.persistence.Entity;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
@@ -7,19 +8,18 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
 
-
 @Entity
 @Table(name = "food_category")
-public class FoodCategory implements Serializable{
+public class FoodCategory implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     @Column(name = "id")
     private Long id;
     @Column(name = "code")
-    private Long  code;
+    private Long code;
     @Column(name = "description")
-    private String  description;
+    private String description;
 
     public FoodCategory() {
     }
@@ -37,7 +37,7 @@ public class FoodCategory implements Serializable{
     }
 
     public void setCode(Long code) {
-        if (code!=null)this.code = code;
+        if (code != null) this.code = code;
     }
 
     public String getDescription() {
@@ -45,6 +45,6 @@ public class FoodCategory implements Serializable{
     }
 
     public void setDescription(String description) {
-        if (description!=null)this.description = description;
+        if (description != null) this.description = description;
     }
 }
