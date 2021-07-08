@@ -13,7 +13,13 @@ import java.util.Arrays;
 public class SupportClass {
     static public boolean isNumeric(String v)
     {
-        return (StringUtils.isNumeric(v) && !v.isEmpty());
+        if (StringUtils.isNumeric(v) && !v.isEmpty())
+        {
+            double d = Double.parseDouble(v);
+            int i = (int)d;
+            return (d-i)==0;
+        }
+        return false;
     }
     static public boolean isSomeAlphaCascade(String... args)
     {
