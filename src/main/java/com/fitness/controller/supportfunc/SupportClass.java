@@ -21,7 +21,7 @@ public class SupportClass {
     }
     static public boolean isSomeAlpha( String v)
     {
-        return ((!NumberUtils.isNumber(v)||!badDoubleCheck(v)) && !v.isEmpty());
+        return ((!StringUtils.isNumeric(v)||!isDouble(v)) && !v.isEmpty());
     }
     static public Long pOnL(String v)//parse or null
     {
@@ -29,15 +29,11 @@ public class SupportClass {
     }
     static public Double pOnD(String v)
     {
-        return badDoubleCheck(v) ? Double.parseDouble(v) : null;
+        return isDouble(v) ? Double.parseDouble(v) : null;
     }
-    static private boolean badDoubleCheck(String v)
+    static public boolean isDouble(String v)
     {
-        try
-        {
-            Double a = Double.parseDouble(v);
-            return true;
-        }catch (NumberFormatException ignored){return false;}
+        return NumberUtils.isCreatable(v);
     }
     /*static public boolean eqWnull(String obj1, String obj2)
     {
@@ -77,6 +73,6 @@ public class SupportClass {
     }
     static public String getExisted(String v1,String v2)
     {
-        return v2.isEmpty() || v2==null ? v1 : v2;
+        return v2==null || v2.isEmpty()  ? v1 : v2;
     }
 }
