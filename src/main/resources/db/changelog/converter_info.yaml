@@ -99,3 +99,37 @@ databaseChangeLog:
             sequenceName:  foodSEQ
             startValue: 13338388
             minValue: 1
+  - changeSet:
+      id:  08072021-insertTestUserAndRole
+      author:  AuthorName
+      changes:
+        - insert:
+            tableName: users
+            columns:
+            - column:
+                name: id
+                value: 0
+            - column:
+                name: user_name
+                value: "test"
+            - column:
+                name: user_password
+                value: "$2y$12$Yfr3fwt6512mnSybp9CSbu7wVMyCHxQzGW8ghHK88aP2Tl802KWZi"  #test
+        - insert:
+            tableName: role
+            columns:
+            - column:
+                name: id
+                value: 0
+            - column:
+                name: role_name
+                value: "User"
+        - insert:
+            tableName: user_role
+            columns:
+            - column:
+                name: user_id
+                value: 0
+            - column:
+                name: role_id
+                value: 0        

@@ -1,0 +1,30 @@
+databaseChangeLog:
+  - changeSet:
+      id: 08072021-createRole
+      author: AuthorName
+      changes:
+        - createSequence:
+            sequenceName: roleSEQ
+            startValue: 1
+        - createTable:
+            tableName: role
+            columns:
+                - column: {name: id, type: bigint}
+                - column: {name: role_name, type: text}
+        - addPrimaryKey:
+            clustered:  true
+            columnNames:  id
+            constraintName:  pk_role
+            schemaName:  public
+            tableName:  role
+            validate:  true
+  - changeSet:
+      id: 08072021-addUniqueRole
+      author: AuthorName
+      changes:
+        - addUniqueConstraint: 
+            columnNames:  id
+            constraintName:  const_role_id
+            schemaName:  public
+            tableName:  role
+            validate:  true         

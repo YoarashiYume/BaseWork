@@ -1,0 +1,47 @@
+databaseChangeLog:
+  - changeSet:
+      id: 08072021-createUserRole
+      author: AuthorName
+      changes:
+        - createTable:
+            tableName: user_role
+            columns:
+                - column: {name: user_id, type: bigint}
+                - column: {name: role_id, type: bigint}
+        - addPrimaryKey:
+            clustered:  true
+            columnNames:  user_id, role_id
+            constraintName:  pk_userRole
+            schemaName:  public
+            tableName:  user_role
+            validate:  true
+  - changeSet:
+      id: 08072021-addForeignKeyConstraintForUserRole
+      author: AuthorName
+      changes:            
+        - addForeignKeyConstraint:
+            baseColumnNames:  user_id    
+            baseTableName:  user_role  
+            baseTableSchemaName:  public  
+            constraintName:  fk_toUsers
+            deferrable:  true  
+            initiallyDeferred:  true  
+            onDelete:  CASCADE  
+            onUpdate:  RESTRICT  
+            referencedColumnNames:  id   
+            referencedTableName:  users 
+            referencedTableSchemaName:  public  
+            validate:  true	
+        - addForeignKeyConstraint:  
+            baseColumnNames:  role_id    
+            baseTableName:  user_role  
+            baseTableSchemaName:  public  
+            constraintName:  fk_toRole
+            deferrable:  true  
+            initiallyDeferred:  true  
+            onDelete:  CASCADE  
+            onUpdate:  RESTRICT  
+            referencedColumnNames:  id   
+            referencedTableName:    role
+            referencedTableSchemaName:  public  
+            validate:  true		

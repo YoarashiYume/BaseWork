@@ -1,0 +1,31 @@
+databaseChangeLog:
+  - changeSet:
+      id: 08072021-createUsers
+      author: AuthorName
+      changes:
+        - createSequence:
+            sequenceName: userSEQ
+            startValue: 1
+        - createTable:
+            tableName: users
+            columns:
+                - column: {name: id, type: bigint}
+                - column: {name: user_name, type: text}
+                - column: {name: user_password, type: text}
+        - addPrimaryKey:
+            clustered:  true
+            columnNames:  id
+            constraintName:  pk_user
+            schemaName:  public
+            tableName:  users
+            validate:  true
+  - changeSet:
+      id: 08072021-addUniqueUser
+      author: AuthorName
+      changes:
+        - addUniqueConstraint: 
+            columnNames:  id
+            constraintName:  const_user_id
+            schemaName:  public
+            tableName:  users
+            validate:  true         

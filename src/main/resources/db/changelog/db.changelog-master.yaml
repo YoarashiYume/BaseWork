@@ -3,4 +3,7 @@ databaseChangeLog:
   - include: { relativeToChangelogFile: true, file: tableDescript/food_category.yaml }
   - include: { relativeToChangelogFile: true, file: tableDescript/food_nutrient.yaml }
   - include: { relativeToChangelogFile: true, file: tableDescript/food_portion.yaml }
+  - include: { relativeToChangelogFile: true, file: tableDescript/users.yaml }
+  - include: { relativeToChangelogFile: true, file: tableDescript/role.yaml }
+  - include: { relativeToChangelogFile: true, file: tableDescript/user_role.yaml }
   - include: { relativeToChangelogFile: true, file: converter_info.yaml }
