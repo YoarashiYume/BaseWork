@@ -6,4 +6,4 @@ databaseChangeLog:
   - include: { relativeToChangelogFile: true, file: tableDescript/users.yaml }
   - include: { relativeToChangelogFile: true, file: tableDescript/role.yaml }
   - include: { relativeToChangelogFile: true, file: tableDescript/user_role.yaml }
-  - include: { relativeToChangelogFile: true, file: converter_info.yaml }
+  - include: { relativeToChangelogFile: true, file: prefill.yaml }
