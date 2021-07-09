@@ -1,10 +1,8 @@
-package com.fitness.security;
-import com.fitness.security.service.jwt.JwtConfig;
-import com.fitness.security.service.jwt.token.JwtTokenProvider;
+package com.fitness.configuration;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.experimental.FieldDefaults;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -14,21 +12,19 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 
 @Configuration
 @AllArgsConstructor
-public class SecurityConfig extends WebSecurityConfigurerAdapter
-{
-    @Autowired
-    private final JwtTokenProvider provider;
+@FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    JwtConfig jwtConfig;
 
     @Bean
     @Override
-    public AuthenticationManager authenticationManagerBean()throws Exception
-    {
+    public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }
 
     @Override
-    protected void configure(HttpSecurity httpSecurity) throws Exception
-    {
+    protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.httpBasic().disable()
                 .csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
@@ -36,7 +32,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
                 .authorizeRequests()
                 .antMatchers("/auth").permitAll()
                 .anyRequest().authenticated()
-                .and().apply(new JwtConfig(provider));
-
+                .and().apply(jwtConfig);
     }
 }

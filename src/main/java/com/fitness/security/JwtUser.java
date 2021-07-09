@@ -1,21 +1,24 @@
-package com.fitness.security.service.jwt;
+package com.fitness.security;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
-
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 
 @AllArgsConstructor
-@FieldDefaults(level = AccessLevel.PRIVATE)
+@FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 public class JwtUser implements UserDetails {
-    final Long id;
-    final String name;
-    final String password;
-    final Collection<? extends GrantedAuthority> authorities;
+
+    Long id;
+
+    String name;
+
+    String password;
+
+    Collection<? extends GrantedAuthority> authorities;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
