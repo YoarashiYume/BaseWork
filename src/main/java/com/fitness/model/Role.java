@@ -1,4 +1,4 @@
-package com.fitness.security.model;
+package com.fitness.model;
 
 import lombok.AccessLevel;
 import lombok.Data;
@@ -8,16 +8,15 @@ import lombok.experimental.FieldDefaults;
 import javax.persistence.*;
 import java.util.List;
 
-
 @Data
 @Entity
 @Table(name = "role")
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Role
-{
+public class Role {
+
     @Id
-    @SequenceGenerator(name = "roleSEQ", sequenceName = "\"roleSEQ\"", allocationSize = 1)
+    @SequenceGenerator(name = "roleSEQ", sequenceName = "roleSEQ", allocationSize = 1)
     @GeneratedValue(generator = "roleSEQ", strategy = GenerationType.SEQUENCE)
     @Column(name = "id")
     Long id;
@@ -25,6 +24,6 @@ public class Role
     @Column(name = "role_name")
     String name;
 
-    @ManyToMany(mappedBy = "roles",fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
     List<User> users;
 }

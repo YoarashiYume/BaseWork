@@ -16,7 +16,7 @@ import java.util.Date;
 public class Food {
 
     @Id
-    @SequenceGenerator(name = "foodSEQ", sequenceName = "\"foodSEQ\"", allocationSize = 1)
+    @SequenceGenerator(name = "foodSEQ", sequenceName = "foodSEQ", allocationSize = 1)
     @GeneratedValue(generator = "foodSEQ", strategy = GenerationType.SEQUENCE)
     @Column(name = "fdc_id")
     Long id;

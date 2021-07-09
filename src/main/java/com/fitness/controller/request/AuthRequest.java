@@ -1,4 +1,4 @@
-package com.fitness.security.dto;
+package com.fitness.controller.request;
 
 import lombok.AccessLevel;
 import lombok.Data;
@@ -6,7 +6,9 @@ import lombok.experimental.FieldDefaults;
 
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class AuthRequestDTO {
+public class AuthRequest {
+
     String username;
+
     String password;
 }

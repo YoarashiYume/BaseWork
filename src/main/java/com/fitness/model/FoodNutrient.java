@@ -15,7 +15,7 @@ import javax.persistence.*;
 public class FoodNutrient {
 
     @Id
-    @SequenceGenerator(name = "foodNutrientSEQ", sequenceName = "\"foodNutrientSEQ\"", allocationSize = 1)
+    @SequenceGenerator(name = "foodNutrientSEQ", sequenceName = "foodNutrientSEQ", allocationSize = 1)
     @GeneratedValue(generator = "foodNutrientSEQ", strategy = GenerationType.SEQUENCE)
     @Column(name = "id")
     Long id;
