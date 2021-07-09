@@ -13,15 +13,16 @@ import javax.persistence.*;
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class FoodCategory {
-    @Id
-    @SequenceGenerator(name = "foodCatSEQ",sequenceName = "\"foodCatSEQ\"", allocationSize = 1)
-    @GeneratedValue(generator ="foodCatSEQ", strategy = GenerationType.SEQUENCE)
 
+    @Id
+    @SequenceGenerator(name = "foodCatSEQ", sequenceName = "\"foodCatSEQ\"", allocationSize = 1)
+    @GeneratedValue(generator = "foodCatSEQ", strategy = GenerationType.SEQUENCE)
     @Column(name = "id")
     Long id;
+
     @Column(name = "code")
     Long code;
+
     @Column(name = "description")
     String description;
-
 }
